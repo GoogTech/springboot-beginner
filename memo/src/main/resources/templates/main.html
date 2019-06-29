@@ -1,0 +1,87 @@
+<!--
+Author: 黄宇辉
+Date: 6/28/2019
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>好友备忘录(っ•̀ω•́)っ✎⁾⁾ ~</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/easyui/css/default.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/easyui/themes/metro/easyui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/easyui/themes/icon.css}"/>
+    <!-- JS -->
+    <script type="text/javascript" th:src="@{/static/easyui/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/easyui/jquery.easyui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/easyui/js/outlook2.js}"></script>
+
+    <!-- 页面事件 -->
+    <script type="text/javascript">
+        //加载页面函数
+        $(function () {
+            //消息推送窗口
+            $.messager.show({
+                width: 360,
+                height: 50,
+                title: '推送',
+                msg: '这是一个具有参考与学习价值的Spring Boot小项目哟 !',
+                showSpeed: 1500,
+                timeout: 0,
+                showType: 'slide'
+            });
+        });
+        //设置系统功能菜单栏
+        var _menus = {
+            "menus": [
+                {
+                    "menuid": "10", "icon": "", "menuname": "备忘录管理",
+                    "menus": [
+                        {
+                            "menuid": "11",
+                            "menuname": "好友列表",
+                            "icon": "icon-pen",
+                            "url": "goFriendListView"
+                        }
+                    ]
+                }
+            ]
+        };
+
+    </script>
+</head>
+
+<!-- EasyUI 布局 -->
+<body class="easyui-layout" style="overflow-y: hidden" scroll="no">
+
+<!-- 页面顶部 -->
+<div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
+        line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体,'Lucida Console',serif">
+    <span style="padding-left:10px; font-size: 20px; color:darkgrey;font-weight: bold">好友备忘录 (っ•̀ω•́)っ✎⁾⁾</span>
+</div>
+
+<!-- 页面底部-->
+<div region="south" split="true" style="height: 30px;">
+    <div class="footer">
+        Copyright @ 2019 黄宇辉. All rights reserved | 本人博客网站 : https://yubuntu0109.github.io
+    </div>
+</div>
+
+<!-- 导航菜单 -->
+<div region="west" hide="true" split="true" title="[ 导航菜单 ]" style="width:180px;" id="west">
+    <div id="nav" class="easyui-accordion" fit="true">
+        <!-- ······ -->
+    </div>
+</div>
+
+<!-- 欢迎页面 -->
+<div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
+    <div id="tabs" class="easyui-tabs" fit="true">
+        <!-- 引入欢迎页资源: 注意'th:replace'与'th:include'的区别哟! -->
+        <div th:replace="intro.html"></div>
+    </div>
+</div>
+
+</body>
+</html>

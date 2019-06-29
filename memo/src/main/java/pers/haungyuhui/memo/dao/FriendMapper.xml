@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pers.haungyuhui.memo.dao.FriendMapper">
+
+    <!-- 添加好友信息 -->
+    <insert id="insert" parameterType="pers.haungyuhui.memo.bean.Friend">
+        INSERT INTO tb_friend(name, gender, qq, email, telephone, address, portrait_path)
+        VALUES (#{name}, #{gender}, #{qq}, #{email}, #{telephone}, #{address}, #{portrait_path})
+    </insert>
+
+    <!-- 根据姓名查询指定好友信息 -->
+    <select id="selectByName" parameterType="String" resultType="pers.haungyuhui.memo.bean.Friend">
+        SELECT id,
+               name,
+               gender,
+               qq,
+               email,
+               telephone,
+               address,
+               portrait_path
+        FROM tb_friend
+        WHERE name = #{name}
+    </select>
+
+    <!-- 根据姓名模糊查询指定/所有好友信息列表 -->
+    <select id="selectAll" parameterType="pers.haungyuhui.memo.bean.Friend"
+            resultType="pers.haungyuhui.memo.bean.Friend">
+        SELECT id, name, gender, qq, email, telephone, address, portrait_path FROM tb_friend
+        <where>
+            <!-- name为Friend中的属性名(在Controller层已将查询的姓名封装到了Friend中的name属性中) -->
+            <if test="name!=null and name!=''">
+                AND name LIKE concat(concat('%',#{name}),'%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据id更新指定好友信息 -->
+    <update id="updateById" parameterType="pers.haungyuhui.memo.bean.Friend">
+        UPDATE tb_friend
+        <set>
+            <if test="name!=null and name!=''">name=#{name},</if>
+            <if test="gender!=null and gender!=''">gender=#{gender},</if>
+            <if test="qq!=null and qq!=''">qq=#{qq},</if>
+            <if test="email!=null and email!=''">email=#{email},</if>
+            <if test="telephone!=null and telephone!=''">telephone=#{telephone},</if>
+            <if test="address!=null and address!=''">address=#{address},</if>
+            <if test="portrait_path!=null and portrait_path!=''">portrait_path=#{portrait_path}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 批量删除指定id的好友信息 -->
+    <delete id="deleteById">
+        DELETE FROM tb_friend WHERE id IN
+        <foreach collection="array" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+</mapper>
