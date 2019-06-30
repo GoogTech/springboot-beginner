@@ -63,13 +63,34 @@
         </dependency>
     </dependencies>
 
-    <!-- 解决: org.apache.ibatis.binding.BindingException:Invalid bound statement (not found) -->
-    <build>
+   <build>
+        <plugins>
+            <!-- Quick start: mvn package -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
         <resources>
+            <!-- IDEA-解决: org.apache.ibatis.binding.BindingException:Invalid bound statement (not found) -->
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!-- IDEA-解决: 项目打包后其jar中未包含'static/'及'application.properties'配置文件问题 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
                 </includes>
             </resource>
         </resources>
