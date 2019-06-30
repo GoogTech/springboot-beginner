@@ -62,13 +62,13 @@ public class StudentController {
      * @description: 分页查询:根据好友姓名获取指定/所有好友信息列表
      * @param: page 当前页码
      * @param: rows 列表行数
-     * @param: username 管理员姓名
+     * @param: username 好友姓名
      * @date: 2019-06-28 9:16 PM
      * @return: java.util.Map<java.lang.String, java.lang.Object>
      */
     @PostMapping("/getFriendList")
     @ResponseBody
-    public Map<String, Object> getAdminList(Integer page, Integer rows, String username) {
+    public Map<String, Object> getFriendList(Integer page, Integer rows, String username) {
 
         //获取查询的好友姓名
         Friend friend = new Friend();
@@ -99,7 +99,7 @@ public class StudentController {
      */
     @PostMapping("/addFriend")
     @ResponseBody
-    public Map<String, Object> addAdmin(Friend friend) {
+    public Map<String, Object> addFriend(Friend friend) {
         //判断姓名是否已存在
         Friend f = friendService.findByName(friend.getName());
         if (f == null) {
@@ -124,7 +124,7 @@ public class StudentController {
      */
     @PostMapping("/editFriend")
     @ResponseBody
-    public Map<String, Object> edityAdmin(Friend friend) {
+    public Map<String, Object> editFriend(Friend friend) {
         //需排除只修改姓名以外信息的操作
         Friend user = friendService.findByName(friend.getName());
         if (user != null) {
@@ -152,7 +152,7 @@ public class StudentController {
      */
     @PostMapping("/deleteFriend")
     @ResponseBody
-    public Map<String, Object> deleteAdmin(@RequestParam(value = "ids[]", required = true) Integer[] ids) {
+    public Map<String, Object> deleteFriend(@RequestParam(value = "ids[]", required = true) Integer[] ids) {
 
         if (friendService.delete(ids) > 0) {
             result.put("success", true);
