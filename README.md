@@ -3,6 +3,8 @@
 ### 项目概述  (:speech_balloon: pause update)
 :+1:*一个简单的,基于Spring Boot的好友备忘录小项目,通过本项目可以学习`Spring Boot`与`MyBatis`的整合及CURD操作的基本思路,同时也可以帮助你学习`Thylemeaf`模板引擎使用哟 ! 该项目的代码注释详细,逻辑结构清晰,非常具有参考,学习价值哟 ! 可以说非常适合初学Sping Boot的同学啦(っ•̀ω•́)っ✎⁾⁾~*
 
+:heart:*为了让更多同学快速地体验该项目,已通过`mvn package`将其打包,并将其作为`v1.0`上传到了`release`中~*
+
 
 ### 项目截图
 - *项目主页面*
