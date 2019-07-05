@@ -1,14 +1,16 @@
 package pers.haungyuhui.memo.bean;
 
+import java.io.Serializable;
+
 /**
  * @project: memo
  * @description: 好友信息
  * @author: 黄宇辉
- * @date: 6/28/2019-9:40 AM
- * @version: 1.0
+ * @date: 2019-07-03 11:58 AM
+ * @version: 2.0
  * @website: https://yubuntu0109.github.io/
  */
-public class Friend {
+public class Friend implements Serializable {
 
     private Integer id;
     private String name;

@@ -1,5 +1,6 @@
 package pers.haungyuhui.memo.service.impl;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.haungyuhui.memo.bean.Friend;
@@ -13,8 +14,8 @@ import java.util.List;
  * @project: memo
  * @description: 业务层实现类-操控好友信息
  * @author: 黄宇辉
- * @date: 6/28/2019-8:56 PM
- * @version: 1.0
+ * @date: 2019-07-03 11:52 AM
+ * @version: 2.0
  * @website: https://yubuntu0109.github.io/
  */
 @Service
@@ -26,22 +27,29 @@ public class FriendServiceImpl implements FriendService {
     private FriendMapper friendMapper;
 
     @Override
+    @CacheEvict(value = "UserCache", key = "'friend.add'")
     public int add(Friend friend) {
         return friendMapper.insert(friend);
     }
 
     @Override
+    @CacheEvict(value = "UserCache", key = "'friend.findByName'")
     public Friend findByName(String name) { return friendMapper.selectByName(name); }
 
     @Override
-    public List<Friend> findAll(Friend friend) { return friendMapper.selectAll(friend); }
+    @CacheEvict(value = "UserCache", key = "'friend.findAll'")
+    public List<Friend> findAll(Friend friend) {
+        return friendMapper.selectAll(friend);
+    }
 
     @Override
+    @CacheEvict(value = "UserCache", key = "'friend.modify'")
     public int modify(Friend friend) {
         return friendMapper.updateById(friend);
     }
 
     @Override
+    @CacheEvict(value = "UserCache", key = "'friend.delete'", allEntries = true)
     public int delete(Integer[] id) {
         return friendMapper.deleteById(id);
     }

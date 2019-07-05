@@ -28,7 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/memo")
-public class StudentController {
+public class FriendController {
 
     //注入业务对象
     @Resource
