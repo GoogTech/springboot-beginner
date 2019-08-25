@@ -235,8 +235,6 @@ Date: 6/28/2019
                     $("#edit_address").textbox('setValue', selectRow.address);
                     //通过获取头像路径来显示该好友的头像
                     $("#edit-portrait").attr('src', selectRow.portrait_path);
-                    //初始化头像路径(已优化:在执行SQL语句时通过判断头像路径是否为空,为空则代表用户并未修改头像)
-                    //$("#edit_portrait-path").val(selectRow.portrait_path);
                 }
             });
 
