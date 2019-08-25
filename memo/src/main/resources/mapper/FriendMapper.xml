@@ -1,41 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="pers.haungyuhui.memo.dao.FriendMapper">
+<mapper namespace="pers.huangyuhui.memo.dao.FriendMapper">
 
     <!-- 添加好友信息 -->
-    <insert id="insert" parameterType="pers.haungyuhui.memo.bean.Friend">
+    <insert id="insertSelective" parameterType="Friend">
         INSERT INTO tb_friend(name, gender, qq, email, telephone, address, portrait_path)
         VALUES (#{name}, #{gender}, #{qq}, #{email}, #{telephone}, #{address}, #{portrait_path})
     </insert>
 
-    <!-- 根据姓名查询指定好友信息 -->
-    <select id="selectByName" parameterType="String" resultType="pers.haungyuhui.memo.bean.Friend">
-        SELECT id,
-               name,
-               gender,
-               qq,
-               email,
-               telephone,
-               address,
-               portrait_path
-        FROM tb_friend
-        WHERE name = #{name}
-    </select>
-
-    <!-- 根据姓名模糊查询指定/所有好友信息列表 -->
-    <select id="selectAll" parameterType="pers.haungyuhui.memo.bean.Friend"
-            resultType="pers.haungyuhui.memo.bean.Friend">
+    <!-- 选择性查询好友信息:根据姓名模糊查询指定/所有好友列表信息 -->
+    <select id="selectBySelective" parameterType="Friend" resultType="Friend">
         SELECT id, name, gender, qq, email, telephone, address, portrait_path FROM tb_friend
         <where>
-            <!-- name为Friend中的属性名(在Controller层已将查询的姓名封装到了Friend中的name属性中) -->
             <if test="name!=null and name!=''">
                 AND name LIKE concat(concat('%',#{name}),'%')
             </if>
         </where>
     </select>
 
-    <!-- 根据id更新指定好友信息 -->
-    <update id="updateById" parameterType="pers.haungyuhui.memo.bean.Friend">
+    <!-- 根据id更新指定的好友信息 -->
+    <update id="updateByPrimaryKey" parameterType="Friend">
         UPDATE tb_friend
         <set>
             <if test="name!=null and name!=''">name=#{name},</if>
@@ -50,7 +34,7 @@
     </update>
 
     <!-- 批量删除指定id的好友信息 -->
-    <delete id="deleteById">
+    <delete id="deleteByPrimaryKey">
         DELETE FROM tb_friend WHERE id IN
         <foreach collection="array" item="ids" open="(" separator="," close=")">
             #{ids}
