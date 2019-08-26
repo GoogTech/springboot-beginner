@@ -1,4 +1,4 @@
-package pers.huangyuhui.memo.bean;
+package pers.haungyuhui.memo.bean;
 
 /**
  * @project: memo
@@ -18,10 +18,6 @@ public class Friend {
     private String telephone;
     private String address;
     private String portrait_path;//头像路径
-
-    public Friend(String name) {
-        this.name = name;
-    }
 
     public Integer getId() {
         return id;
