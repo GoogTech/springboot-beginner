@@ -2,13 +2,13 @@
 
 
 ### 项目概述
-:+1:*一个简单的，基于 Spring Boot 的好友备忘录小项目，通过本项目你可以学习到 Spring Boot 与 MyBatis 的整合及 CURD 操作的基本思路，同时也可以帮助你学习 Thylemeaf 模板引擎的基本使用. 这可能是流程最清晰、代码最干净、注释最详细、最具扩展性的`Spring Boot`入门级项目咯，可以说非常适合作为初学 Sping Boot 的同学的第一个上手项目哟 (っ•̀ω•́)っ✎⁾⁾~*
+:+1:*一个简单的，基于 Spring Boot 的好友备忘录小项目，通过本项目你可以学习到 Spring Boot 与 MyBatis 的整合及 CURD 操作的基本思路，同时也可以帮助你学习 Thylemeaf 模板引擎的基本使用. 这可能是流程最清晰、代码最干净、注释最详细、最具扩展性的 Spring Boot 入门级项目咯，可以说非常适合作为初学 Sping Boot 的同学的第一个上手项目哟 (っ•̀ω•́)っ✎⁾⁾~*
 
 
 ### 分支介绍
 - :arrows_clockwise: *`master` : 基本的 Spring Boot 整合 MyBatis ( 该代码的优化请参考`refactor-190823`分支 )*
 - :arrows_clockwise: *`v2.0-redis` : 在 master 分支上简单集成 Redis*
-- :arrows_clockwise: *`refactor-190823` : 重构并优化master分支代码，提高项目的可扩展性*
+- :arrows_clockwise: *`refactor-190823` : 重构并优化 master 分支代码，提高项目的可扩展性*
 
 > 为了让更多同学快速地体验该项目，已通过`mvn package`将`master`分支打包，并将其作为`v1.0`已上传到了`release`中
 
